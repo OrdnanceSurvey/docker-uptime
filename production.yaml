@@ -1,0 +1,26 @@
+url:        'http://docker-uptime-server:8082'
+mongodb:
+  server:   mongo-db-uptime
+  database: uptime
+  user:     root
+  password: 
+  connectionString: mongodb://mongo-db-uptime/uptime      # alternative to setting server, database, user and password separately
+
+monitor:
+  name:                   origin
+  apiUrl:                 'http://localhost:8082/api' # must be accessible without a proxy
+  pollingInterval:        10000      # ten seconds
+  timeout:                5000       # five seconds
+  userAgent:              NodeUptime/2.0 (https://github.com/fzaninotto/uptime)
+
+analyzer:
+  updateInterval:         60000      # one minute
+  qosAggregationInterval: 600000     # ten minutes
+  pingHistory:            8035200000 # three months
+
+autoStartMonitor: true
+
+plugins:
+  - ./plugins/console
+  - ./plugins/patternMatcher
+  - ./plugins/httpOptions  
