@@ -18,9 +18,27 @@ analyzer:
   qosAggregationInterval: 600000     # ten minutes
   pingHistory:            8035200000 # three months
 
+basicAuth:
+  username: admin
+  password: password
+
+webhooks:
+  event:
+    up:
+      - 'http://${env:DOCKERCLOUD_SERVICE_FQDN}:${env:UPTIME_PORT}'
+      - '${env:SLACK_INCOMING_WEBHOOK_URL}'
+    down:
+      - '${env:SLACK_INCOMING_WEBHOOK_URL}'
+    paused:
+      - '${env:SLACK_INCOMING_WEBHOOK_URL}'
+    restarted:
+      - '${env:SLACK_INCOMING_WEBHOOK_URL}'
+  dashboardUrl: 'http://${env:DOCKERCLOUD_SERVICE_FQDN}:${env:UPTIME_PORT}'
+ 
 autoStartMonitor: true
 
 plugins:
   - ./plugins/console
   - ./plugins/patternMatcher
-  - ./plugins/httpOptions  
+  - ./plugins/httpOptions
+  - ./plugins/basicAuth
