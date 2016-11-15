@@ -1,0 +1,12 @@
+docker-uptime-server:
+  image: 'soumentrivedi/docker-uptime:latest'
+  environment:
+    - UPTIME_PORT=8082
+  ports:
+    - '8082:8082'
+  links:
+    - mongo-db-uptime  
+mongo-db-uptime:
+  image: 'mongo:latest'
+  expose:
+    - '27017'
