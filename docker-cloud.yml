@@ -2,6 +2,8 @@ docker-uptime-server:
   image: 'soumentrivedi/docker-uptime:latest'
   environment:
     - UPTIME_PORT=8082
+    - 'SLACK_CHANNEL=#slack-channel'
+    - 'SLACK_INCOMING_WEBHOOK_URL=INCOMING WEBHOOT URL'
   ports:
     - '8082:8082'
   links:

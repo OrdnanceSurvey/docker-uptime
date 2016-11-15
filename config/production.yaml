@@ -25,7 +25,6 @@ basicAuth:
 webhooks:
   event:
     up:
-      - 'http://${env:DOCKERCLOUD_SERVICE_FQDN}:${env:UPTIME_PORT}'
       - '${env:SLACK_INCOMING_WEBHOOK_URL}'
     down:
       - '${env:SLACK_INCOMING_WEBHOOK_URL}'
@@ -34,6 +33,10 @@ webhooks:
     restarted:
       - '${env:SLACK_INCOMING_WEBHOOK_URL}'
   dashboardUrl: 'http://${env:DOCKERCLOUD_SERVICE_FQDN}:${env:UPTIME_PORT}'
+  channel:      '${env:SLACK_CHANNEL}'
+  username:     admin
+  password:     password
+  icon_emoji:   ':fire:'
  
 autoStartMonitor: true
 
