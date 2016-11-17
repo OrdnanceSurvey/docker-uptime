@@ -10,5 +10,9 @@ docker-uptime-server:
     - mongo-db-uptime  
 mongo-db-uptime:
   image: 'mongo:latest'
+  volumes_from:
+    - 'mongo-db-data:rw'  
   expose:
     - '27017'
+mongo-db-data:
+  image: 'soumentrivedi/docker-s3-sync:latest'
